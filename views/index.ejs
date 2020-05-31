@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= data.title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/common.css' />
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>文档数据校正页</h1>
+    <div class="step frist">
+        <div class="info">选择文档1</div>
+        <div class="info">选择文档2</div>
+    </div>
+    <% for(var item in data.contents){ %>
+        <div>
+            <%= data.contents[item] %>
+        </div>
+        <% } %>
+            <div id="checkArea">
+
+            </div>
+
+            <div class="btn">读文件</div>
+</body>
+<script>
+    window.onload = function() {
+        // 获取文档目录
+
+        // window.wordList = ['文档A', '文档B', '文档C', '文档E', '文档F']
+    }
+    $('.btn').on('click', function() {
+        console.log('click');
+        $.ajax({
+            type: "GET",
+            url: "/contents.do",
+            data: {
+                type: 1
+            },
+            //dataType: "json",
+            success: function(data) {
+                console.log('btn', data);
+
+            }
+        })
+    })
+</script>
+
+</html>
